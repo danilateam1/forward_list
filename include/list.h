@@ -12,7 +12,7 @@ private:
 		Node(T elem) : elem(elem) {}
 		Node(const Node& v) {
 			elem = v.elem;
-			delete[] next;
+			delete next;
 			next = new Node();
 			next = v.next;
 		}
@@ -69,7 +69,7 @@ public:
 	}
 	ForwardList(const ForwardList<T>& v) {
 		this->size = v.size;
-		delete[] first;
+		delete first;
 		Node* c = v.first;
 		first = new Node(c->elem);
 		Node* tmp = first;
@@ -81,7 +81,7 @@ public:
 		}
 	}
 	ForwardList(const std::initializer_list<T>& v) {
-		delete[] first;
+		delete first;
 		first = new Node(*v.begin());
 		Node* tmp = first;
 		auto i = v.begin() + 1;
@@ -153,7 +153,7 @@ public:
 		if (size == 0)
 			throw("empty list");
 		Node* tmp = first->next;
-		delete[] first;
+		delete first;
 		first = tmp;
 		size--;
 	}
