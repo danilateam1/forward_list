@@ -186,16 +186,16 @@ public:
 		Node* tmp = new Node(val);
 		tmp->next = (it.ptr_go())->next;
 		(it.ptr_go())->next = tmp;
-		return iterator(tmp);
 		size++;
+		return iterator(tmp);
 	}
 	iterator erase_after(iterator it) {
 		Node* tmp1 = it.ptr_go();
 		Node* tmp2 = tmp1->next;
 		tmp1->next = tmp2->next;
 		delete[] tmp2;
-		return iterator(tmp1->next);
 		size--;
+		return iterator(tmp1->next);
 	}
 
 	iterator begin() {
