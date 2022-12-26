@@ -38,7 +38,7 @@ public:
 		iterator operator+(int n) {
 			iterator tmp(this->ptr);
 			for (int i = 0; i < n; ++i)
-				tmp = tmp->next;
+				ptr = ptr->next;
 			return tmp;
 		}
 		T& operator*() {
@@ -221,19 +221,32 @@ public:
 
 	std::vector<T> find_middle() {
 		std::vector<T> el;
-		int n = 0;
-		if (this->get_size() % 2 != 0) {
-			for (auto ptr = this->begin(); ptr != this->end(); ptr++) {
-				if (n == this->get_size() / 2) { el.push_back(*ptr); break; };
-				n++;
-			}
+		auto ptr1 = this->begin();
+		auto ptr2 = this->begin();
+		auto ptr3 = ptr1;
+		ptr3++;
+		if (ptr3 == nullptr) {   // 1 element v liste
+			el.push_back(*ptr1);
+			return el;
 		}
-		else {
-			for (auto ptr = this->begin(); ptr != this->end(); ptr++) {
-				if ((n + 1) >= this->get_size() / 2) { el.push_back(*ptr); ptr++; el.push_back(*ptr); break; };
-				n++;
+		while (true) {
+			auto ptr3 = ptr2;
+			ptr3++;
+			if (ptr3 == nullptr) {   
+				ptr1++;
+				el.push_back(*ptr1);
+				return el;
 			}
+			ptr3++;
+			if (ptr3 == nullptr) {
+				el.push_back(*ptr1);
+				ptr1++;
+				el.push_back(*ptr1);
+				return el;
+			}
+			ptr1++;
+			ptr2 + 2;
 		}
-		return el;
 	}
+	
 };
